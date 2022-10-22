@@ -1,4 +1,7 @@
 import { Handlers, PageProps } from '$fresh/server.ts';
+import { AppLayout } from '../components/AppLayout.tsx';
+
+const meta = { title: 'Search page' };
 
 const NAMES = ['Alice', 'Bob', 'Charlie', 'Dave', 'Eve', 'Frank'];
 
@@ -19,7 +22,7 @@ export const handler: Handlers<Data> = {
 export default function Page({ data }: PageProps<Data>) {
   const { results, query } = data;
   return (
-    <div>
+    <AppLayout {...meta}>
       <form>
         <input type="text" name="q" value={query} />
         <button type="submit">Search</button>
@@ -35,6 +38,6 @@ export default function Page({ data }: PageProps<Data>) {
           No results for <strong>{`${query}`}</strong>
         </p>
       )}
-    </div>
+    </AppLayout>
   );
 }
